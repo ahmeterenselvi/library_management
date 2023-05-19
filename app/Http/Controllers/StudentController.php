@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
-class BookController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $books = Book::all();
-        return view('books.index', compact('books'));
+        $students = Student::all();
+        return view('students.index', compact('students'));
     }
 
     /**
@@ -21,7 +21,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        return view('students.create');
     }
 
     /**
@@ -30,20 +30,18 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'page_count' => 'required|integer',
-            'publisher' => 'required'
+            'name' => 'required',
+            'student_number' => 'required',
+            'email' => 'required',
+            'phone' => 'required'
         ]);
 
-        $validatedData['available'] = true;
-
-        $book = new Book($validatedData);
-        $book->save();
+        $student = new Student($validatedData);
+        $student->save();
 
         // İsteğe bağlı olarak başarılı bir şekilde kaydedildiğini belirten bir mesaj eklenebilir.
 
-        return redirect()->route('books.index');
+        return redirect()->route('students.index');
     }
 
     /**
@@ -59,8 +57,8 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-        $book = Book::findOrFail($id);
-        return view('books.edit', compact('book'));
+        $student = Student::findOrFail($id);
+        return view('students.edit', compact('student'));
     }
 
     /**
@@ -69,19 +67,18 @@ class BookController extends Controller
     public function update(Request $request, string $id)
     {
         $validatedData = $request->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'page_count' => 'required|integer',
-            'publisher' => 'required',
-            'available' => 'required'
+            'name' => 'required',
+            'student_number' => 'required',
+            'email' => 'required',
+            'phone' => 'required'
         ]);
 
-        $book = Book::findOrFail($id);
-        $book->update($validatedData);
+        $student = Student::findOrFail($id);
+        $student->update($validatedData);
 
-        // İsteğe bağlı olarak başarılı bir şekilde güncellendiğini belirten bir mesaj eklenebilir.
+        // İsteğe bağlı olarak başarılı bir şekilde kaydedildiğini belirten bir mesaj eklenebilir.
 
-        return redirect()->route('books.index');
+        return redirect()->route('students.index');
     }
 
     /**
@@ -89,11 +86,11 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        $book = Book::findOrFail($id);
-        $book->delete();
+        $student = Student::findOrFail($id);
+        $student->delete();
 
         // İsteğe bağlı olarak başarılı bir şekilde silindiğini belirten bir mesaj eklenebilir.
 
-        return redirect()->route('books.index');
+        return redirect()->route('students.index');
     }
 }

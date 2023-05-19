@@ -86,14 +86,14 @@
             </td>
             <td>
                 <div class="button-container">
-                    <form action="{{ route('books.destroy', $book->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="action-button" type="submit">Sil</button>
-                    </form>
                     <form action="{{ route('books.edit', $book->id) }}" method="get">
                         @csrf
                         <button class="action-button" type="submit">Güncelle</button>
+                    </form>
+                    <form action="{{ route('books.destroy', $book->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="action-button" type="submit" style="background-color:#d9534f">Sil</button>
                     </form>
                 </div>
             </td>
