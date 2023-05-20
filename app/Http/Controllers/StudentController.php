@@ -36,6 +36,10 @@ class StudentController extends Controller
             'phone' => 'required'
         ]);
 
+        if ($request->filled('password')) {
+            $validatedData['password'] = bcrypt($request->input('password'));
+        }
+
         $student = new Student($validatedData);
         $student->save();
 
@@ -72,6 +76,10 @@ class StudentController extends Controller
             'email' => 'required',
             'phone' => 'required'
         ]);
+
+        if ($request->filled('password')) {
+            $validatedData['password'] = bcrypt($request->input('password'));
+        }
 
         $student = Student::findOrFail($id);
         $student->update($validatedData);

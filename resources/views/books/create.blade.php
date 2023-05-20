@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+@php
+    $page='Kitap';
+    $pageTitle = 'Kitap Ekleme';
+    $pageLink='books.index';
+@endphp
+
+@extends('layouts.app')
+    <!DOCTYPE html>
 <html>
 <head>
     <title>Yeni Kitap Ekle</title>
@@ -55,34 +62,36 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Yeni Kitap Ekle</h1>
+@section('content')
+    <div class="container">
+        <form method="POST" action="{{ route('books.store') }}">
+            @csrf
 
-    <form method="POST" action="{{ route('books.store') }}">
-        @csrf
+            <div class="form-group">
+                <label for="title">Başlık:</label>
+                <input type="text" class="form-control" name="title" id="title" required>
+            </div>
 
-        <div class="form-group">
-            <label for="title">Başlık:</label>
-            <input type="text" class="form-control" name="title" id="title" required>
-        </div>
+            <div class="form-group">
+                <label for="author">Yazar:</label>
+                <input type="text" class="form-control" name="author" id="author" required>
+            </div>
 
-        <div class="form-group">
-            <label for="author">Yazar:</label>
-            <input type="text" class="form-control" name="author" id="author" required>
-        </div>
+            <div class="form-group">
+                <label for="page_count">Sayfa Sayısı:</label>
+                <input type="number" class="form-control" name="page_count" id="page_count" required>
+            </div>
 
-        <div class="form-group">
-            <label for="page_count">Sayfa Sayısı:</label>
-            <input type="number" class="form-control" name="page_count" id="page_count" required>
-        </div>
+            <div class="form-group">
+                <label for="publisher">Yayınevi:</label>
+                <input type="text" class="form-control" name="publisher" id="publisher" required>
+            </div>
 
-        <div class="form-group">
-            <label for="publisher">Yayınevi:</label>
-            <input type="text" class="form-control" name="publisher" id="publisher" required>
-        </div>
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
 
-        <button type="submit" class="btn btn-primary">Kaydet</button>
-    </form>
-</div>
+        <a href="{{ route('books.index') }}" class="btn btn-secondary mt-3">Geri Dön</a>
+    </div>
+@endsection
 </body>
 </html>

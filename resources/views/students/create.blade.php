@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+@php
+    $page='Öğrenci';
+    $pageTitle = 'Öğrenci Ekleme';
+    $pageLink='students.index';
+@endphp
+
+@extends('layouts.app')
+    <!DOCTYPE html>
 <html>
 <head>
     <title>Yeni Öğrenci Ekle</title>
@@ -55,34 +62,42 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Yeni Öğrenci Ekle</h1>
+@section('content')
+    <div class="container">
+        <form method="POST" action="{{ route('students.store') }}">
+            @csrf
 
-    <form method="POST" action="{{ route('students.store') }}">
-        @csrf
+            <div class="form-group">
+                <label for="name">İsim:</label>
+                <input type="text" class="form-control" name="name" id="name" required>
+            </div>
 
-        <div class="form-group">
-            <label for="name">İsim:</label>
-            <input type="text" class="form-control" name="name" id="name" required>
-        </div>
+            <div class="form-group">
+                <label for="student_number">Öğrenci Numarası:</label>
+                <input type="text" class="form-control" name="student_number" id="student_number" required>
+            </div>
 
-        <div class="form-group">
-            <label for="student_number">Öğrenci Numarası:</label>
-            <input type="text" class="form-control" name="student_number" id="student_number" required>
-        </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" name="email" id="email" required>
+            </div>
 
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="text" class="form-control" name="email" id="email" required>
-        </div>
+            <div class="form-group">
+                <label for="phone">Telefon Numarası:</label>
+                <input type="text" class="form-control" name="phone" id="phone" required>
+            </div>
 
-        <div class="form-group">
-            <label for="phone">Telefon Numarası:</label>
-            <input type="text" class="form-control" name="phone" id="phone" required>
-        </div>
+            <div class="form-group">
+                <label for="phone">Şifre:</label>
+                <input type="text" class="form-control" name="password" id="password" required>
+            </div>
 
-        <button type="submit" class="btn btn-primary">Kaydet</button>
-    </form>
-</div>
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
+
+        <a href="{{ route('students.index') }}" class="btn btn-secondary mt-3">Geri Dön</a>
+    </div>
+@endsection
+
 </body>
 </html>

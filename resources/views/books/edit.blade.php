@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+@php
+    $page='Kitap';
+    $pageTitle = 'Kitap Düzenleme';
+    $pageLink='books.index';
+@endphp
+
+@extends('layouts.app')
+    <!DOCTYPE html>
 <html>
 <head>
     <title>Kitap Düzenle</title>
@@ -56,43 +63,48 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Kitap Düzenle</h1>
+@section('content')
+    <div class="container">
 
-    <form method="POST" action="{{ route('books.update', $book->id) }}">
-        @csrf
-        @method('PUT')
+        <form method="POST" action="{{ route('books.update', $book->id) }}">
+            @csrf
+            @method('PUT')
 
-        <div class="form-group">
-            <label for="title">Başlık:</label>
-            <input type="text" class="form-control" name="title" id="title" value="{{ $book->title }}" required>
-        </div>
+            <div class="form-group">
+                <label for="title">Başlık:</label>
+                <input type="text" class="form-control" name="title" id="title" value="{{ $book->title }}" required>
+            </div>
 
-        <div class="form-group">
-            <label for="author">Yazar:</label>
-            <input type="text" class="form-control" name="author" id="author" value="{{ $book->author }}" required>
-        </div>
+            <div class="form-group">
+                <label for="author">Yazar:</label>
+                <input type="text" class="form-control" name="author" id="author" value="{{ $book->author }}" required>
+            </div>
 
-        <div class="form-group">
-            <label for="page_count">Sayfa Sayısı:</label>
-            <input type="number" class="form-control" name="page_count" id="page_count" value="{{ $book->page_count }}" required>
-        </div>
+            <div class="form-group">
+                <label for="page_count">Sayfa Sayısı:</label>
+                <input type="number" class="form-control" name="page_count" id="page_count"
+                       value="{{ $book->page_count }}" required>
+            </div>
 
-        <div class="form-group">
-            <label for="publisher">Yayınevi:</label>
-            <input type="text" class="form-control" name="publisher" id="publisher" value="{{ $book->publisher }}" required>
-        </div>
+            <div class="form-group">
+                <label for="publisher">Yayınevi:</label>
+                <input type="text" class="form-control" name="publisher" id="publisher" value="{{ $book->publisher }}"
+                       required>
+            </div>
 
-        <div class="form-group">
-            <label for="available">Kullanılabilir:</label>
-            <select class="form-control" name="available" id="available">
-                <option value="1" @if($book->available) selected @endif>Evet</option>
-                <option value="0" @if(!$book->available) selected @endif>Hayır</option>
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="available">Kullanılabilir:</label>
+                <select class="form-control" name="available" id="available">
+                    <option value="1" @if($book->available) selected @endif>Evet</option>
+                    <option value="0" @if(!$book->available) selected @endif>Hayır</option>
+                </select>
+            </div>
 
-        <button type="submit" class="btn btn-primary">Güncelle</button>
-    </form>
-</div>
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+        </form>
+
+        <a href="{{ route('books.index') }}" class="btn btn-secondary mt-3">Geri Dön</a>
+    </div>
+@endsection
 </body>
 </html>

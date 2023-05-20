@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+@php
+    $page='Öğrenci';
+    $pageTitle = 'Öğrenci Düzenleme';
+    $pageLink='students.index';
+@endphp
+
+@extends('layouts.app')
+    <!DOCTYPE html>
 <html>
 <head>
     <title>Öğrenci Düzenle</title>
@@ -56,35 +63,44 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Öğrenci Düzenle</h1>
+@section('content')
+    <div class="container">
+        <form method="POST" action="{{ route('students.update', $student->id) }}">
+            @csrf
+            @method('PUT')
 
-    <form method="POST" action="{{ route('students.update', $student->id) }}">
-        @csrf
-        @method('PUT')
+            <div class="form-group">
+                <label for="title">İsim:</label>
+                <input type="text" class="form-control" name="name" id="name" value="{{ $student->name }}" required>
+            </div>
 
-        <div class="form-group">
-            <label for="title">İsim:</label>
-            <input type="text" class="form-control" name="name" id="name" value="{{ $student->name }}" required>
-        </div>
+            <div class="form-group">
+                <label for="author">Öğrenci Numarası:</label>
+                <input type="text" class="form-control" name="student_number" id="student_number"
+                       value="{{ $student->student_number }}" required>
+            </div>
 
-        <div class="form-group">
-            <label for="author">Öğrenci Numarası:</label>
-            <input type="text" class="form-control" name="student_number" id="student_number" value="{{ $student->student_number }}" required>
-        </div>
+            <div class="form-group">
+                <label for="page_count">Email:</label>
+                <input type="text" class="form-control" name="email" id="email" value="{{ $student->email }}" required>
+            </div>
 
-        <div class="form-group">
-            <label for="page_count">Email:</label>
-            <input type="text" class="form-control" name="email" id="email" value="{{ $student->email }}" required>
-        </div>
+            <div class="form-group">
+                <label for="publisher">Telefon Numarası:</label>
+                <input type="text" class="form-control" name="phone" id="phone" value="{{ $student->phone }}" required>
+            </div>
 
-        <div class="form-group">
-            <label for="publisher">Telefon Numarası:</label>
-            <input type="text" class="form-control" name="phone" id="phone" value="{{ $student->phone }}" required>
-        </div>
+            <div class="form-group">
+                <label for="publisher">Şifre:</label>
+                <input type="text" class="form-control" name="password" id="password" value="{{ $student->password }}"
+                       required>
+            </div>
 
-        <button type="submit" class="btn btn-primary">Güncelle</button>
-    </form>
-</div>
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+        </form>
+
+        <a href="{{ route('students.index') }}" class="btn btn-secondary mt-3">Geri Dön</a>
+    </div>
+@endsection
 </body>
 </html>
