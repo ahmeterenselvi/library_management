@@ -60,6 +60,13 @@
         form button:hover {
             background-color: #45a049;
         }
+
+        .password-toggle {
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -91,9 +98,15 @@
             </div>
 
             <div class="form-group">
-                <label for="publisher">Şifre:</label>
-                <input type="text" class="form-control" name="password" id="password" value="{{ $student->password }}"
-                       required>
+                <label for="password">Şifre:</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" name="password" id="password" value="{{ $student->password }}" required>
+                    <div class="input-group-append">
+            <span class="input-group-text password-toggle" style="cursor: pointer;">
+                <i class="fas fa-eye"></i>
+            </span>
+                    </div>
+                </div>
             </div>
 
             <button type="submit" class="btn btn-primary">Güncelle</button>
@@ -102,5 +115,22 @@
         <a href="{{ route('students.index') }}" class="btn btn-secondary mt-3">Geri Dön</a>
     </div>
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.password-toggle').click(function () {
+            var passwordInput = $('#password');
+            var passwordFieldType = passwordInput.attr('type');
+
+            if (passwordFieldType === 'password') {
+                passwordInput.attr('type', 'text');
+            } else {
+                passwordInput.attr('type', 'password');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

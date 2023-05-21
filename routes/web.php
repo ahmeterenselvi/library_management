@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\StudentController;
-
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +45,16 @@ Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('st
 Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
 Route::put('/students/{id}', [StudentController::class, 'update'])->name('students.update');
 
+Route::get('/admins', [AdminController::class, 'index'])->name('admins.index');
+Route::get('/admins/create', [AdminController::class, 'create'])->name('admins.create');
+Route::post('/admins', [AdminController::class, 'store'])->name('admins.store');
+Route::delete('/admins/{id}', [AdminController::class, 'destroy'])->name('admins.destroy');
+Route::get('/admins/{id}/edit', [AdminController::class, 'edit'])->name('admins.edit');
+Route::put('/admins/{id}', [AdminController::class, 'update'])->name('admins.update');
 
+Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
+Route::get('/announcements/create', [AnnouncementController::class, 'create'])->name('announcements.create');
+Route::post('/announcements', [AnnouncementController::class, 'store'])->name('announcements.store');
+Route::delete('/announcements/{id}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
+Route::get('/announcements/{id}/edit', [AnnouncementController::class, 'edit'])->name('announcements.edit');
+Route::put('/announcements/{id}', [AnnouncementController::class, 'update'])->name('announcements.update');

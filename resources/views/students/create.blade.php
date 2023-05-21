@@ -88,7 +88,7 @@
             </div>
 
             <div class="form-group">
-                <label for="phone">Şifre:</label>
+                <label for="password">Şifre:</label>
                 <input type="text" class="form-control" name="password" id="password" required>
             </div>
 
