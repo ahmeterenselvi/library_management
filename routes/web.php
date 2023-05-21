@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +19,9 @@ use App\Http\Controllers\AnnouncementController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -58,3 +60,22 @@ Route::post('/announcements', [AnnouncementController::class, 'store'])->name('a
 Route::delete('/announcements/{id}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
 Route::get('/announcements/{id}/edit', [AnnouncementController::class, 'edit'])->name('announcements.edit');
 Route::put('/announcements/{id}', [AnnouncementController::class, 'update'])->name('announcements.update');
+
+Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+Route::get('/messages/create', [MessageController::class, 'create'])->name('messages.create');
+Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('messages.destroy');
+Route::get('/messages/{id}/edit', [MessageController::class, 'edit'])->name('messages.edit');
+Route::put('/messages/{id}', [MessageController::class, 'update'])->name('messages.update');
+
+// Admin Login Routes
+Route::get('admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
+
+// Student Login Routes
+Route::get('student/login', [StudentController::class,'showLoginForm'])->name('student.login');
+Route::post('student/login', [StudentController::class,'showLoginForm'])->name('student.login.submit');
+
+// Student Registration Routes
+Route::get('student/register', [StudentController::class,'showRegistrationForm'])->name('student.register');
+Route::post('student/register', [StudentController::class,'register'])->name('student.register.submit');

@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/AdminLTE-master/index3.html" class="brand-link">
+    <a href="{{ route('home') }}" class="brand-link">
         <img src="/AdminLTE-master/dist/img/icon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Library Management</span>
     </a>
@@ -88,7 +88,7 @@
                 </li>
                 <li class="nav-header">ANNOUNCEMENTS</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('announcements.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-bullhorn"></i>
                         <p>
                             Announcement List
@@ -96,7 +96,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('announcements.create') }}" class="nav-link">
                         <i class="nav-icon fas fa-plus"></i>
                         <p>
                             Create Announcement
@@ -105,7 +105,7 @@
                 </li>
                 <li class="nav-header">MESSAGES</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('messages.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
                             Message List
@@ -113,7 +113,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('messages.create') }}" class="nav-link">
                         <i class="nav-icon fas fa-envelope-open"></i>
                         <p>
                             Create Message

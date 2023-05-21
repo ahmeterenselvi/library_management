@@ -95,4 +95,34 @@ class AdminController extends Controller
 
         return redirect()->route('admins.index');
     }
+
+    /**
+     * Show the login form for admins.
+     */
+    public function showLoginForm()
+    {
+        return view('admins.admin-login');
+    }
+
+    /**
+     * Process the login form for admins.
+     */
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $admin = Admin::where('email', $credentials['email'])->first();
+
+        if (!$admin || !password_verify($credentials['password'], $admin->password)) {
+            return back()->withErrors(['email' => 'Invalid credentials']);
+        }
+
+        // Başarılı giriş işlemi
+        // İşlemleri buraya ekleyebilirsiniz
+
+        return redirect()->route('home');
+    }
 }

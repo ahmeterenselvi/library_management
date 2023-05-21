@@ -101,4 +101,63 @@ class StudentController extends Controller
 
         return redirect()->route('students.index');
     }
+
+    /**
+     * Show the login form for students.
+     */
+    public function showLoginForm()
+    {
+        return view('students.student-login');
+    }
+
+    /**
+     * Process the login form for students.
+     */
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::guard('student')->attempt($credentials)) {
+            return redirect()->route('home');
+        }
+
+        return back()->withErrors(['email' => 'Invalid credentials']);
+    }
+
+    /**
+     * Show the registration form for students.
+     */
+    public function showRegistrationForm()
+    {
+        return view('students.register');
+    }
+
+    /**
+     * Process the registration form for students.
+     */
+    public function register(Request $request)
+    {
+        // Validate and store the student's registration data
+        // You can use the Student model to create a new student record in the database
+
+        // After successful registration, you can redirect the student to the login page or any other desired page
+
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'student_number' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'password'=>'required'
+        ]);
+
+        $student = new Student($validatedData);
+        $student->save();
+
+        // İsteğe bağlı olarak başarılı bir şekilde kaydedildiğini belirten bir mesaj eklenebilir.
+
+        return redirect()->route('student.login')->with('success', 'Registration successful. Please login.');
+    }
 }
