@@ -22,7 +22,7 @@
                                 <img src="{{ asset('images/'.$announcement->image) }}" class="card-img-top" alt="Duyuru Resmi" height="500" width="500">
                             @endif
                             <div class="card-body">
-                                <h5 class="card-title">{{ $announcement->title }}</h5>
+                                <h5 class="card-title"><b>{{ $announcement->title }}</b></h5>
                                 <p class="card-text">{{ $announcement->description }}</p>
                                 <p class="card-text"><small class="text-muted">{{ $announcement->date }}</small></p>
                                 <div class="btn-group" role="group" aria-label="Duyuru İşlemleri">

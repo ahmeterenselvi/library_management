@@ -95,6 +95,7 @@
             <th>Yazar</th>
             <th>Sayfa Sayısı</th>
             <th>Yayınevi</th>
+            <th>Resim</th>
             <th>Durum</th>
             <th>İşlemler</th>
         </tr>
@@ -106,8 +107,14 @@
                 <td>{{ $book->author }}</td>
                 <td>{{ $book->page_count }}</td>
                 <td>{{ $book->publisher }}</td>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="{{ asset('images/' . $book->image) }}" alt="{{ $book->title }}"
+                             class="img-thumbnail mr-2" style="max-width: 50px; height: auto;">
+                    </div>
+                </td>
                 <td class="{{ $book->available ? 'available-yes' : 'available-no' }}">
-                    {{ $book->available ? 'Uygun' : 'Uygun Değil' }}
+                    {{ $book->available ? 'Ödünç Almaya Uygun' : 'Ödünç Almaya Uygun Değil' }}
                 </td>
                 <td>
                     <div class="button-container">

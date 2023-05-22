@@ -120,12 +120,23 @@ class StudentController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::guard('student')->attempt($credentials)) {
-            return redirect()->route('home');
+        $student = Student::where('email', $credentials['email'])->first();
+
+        if (!$student || !password_verify($credentials['password'], $student->password)) {
+            return back()->withErrors(['email' => 'Invalid credentials']);
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials']);
+        // Başarılı giriş işlemi
+        // Oturuma öğrenci bilgilerini ekleyin
+        session(['student_name' => $student->name]);
+        session(['student_number' => $student->student_number]);
+        session(['email' => $student->email]);
+        session(['phone' => $student->phone]);
+        session(['password' => $student->password]);
+
+        return redirect()->route('library.index');
     }
+
 
     /**
      * Show the registration form for students.

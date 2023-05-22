@@ -32,7 +32,7 @@ class AnnouncementController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required'
         ]);
 
         $validatedData['date'] = date('Y-m-d');
@@ -55,7 +55,7 @@ class AnnouncementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
         $announcement = Announcement::findOrFail($id);
         return view('announcements.show', compact('announcement'));
@@ -64,7 +64,7 @@ class AnnouncementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
         $announcement = Announcement::findOrFail($id);
         return view('announcements.edit', compact('announcement'));
@@ -73,29 +73,47 @@ class AnnouncementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
         $validatedData = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'date' => 'required|date',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required'
         ]);
+
+        $validatedData['date'] = date('Y-m-d');
+
+        $announcement = Announcement::findOrFail($id);
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->extension();
-            $image->move(public_path('images'), $imageName);
-            $validatedData['image'] = $imageName;
+
+            if ($image->isValid()) {
+                // Eski resmi sil
+                if ($announcement->image) {
+                    $imagePath = public_path('images') . '/' . $announcement->image;
+                    if (file_exists($imagePath)) {
+                        unlink($imagePath);
+                    }
+                }
+
+                // Yeni resmi yükle
+                $imageName = time() . '.' . $image->extension();
+                $image->move(public_path('images'), $imageName);
+                $validatedData['image'] = $imageName;
+            } else {
+                // Yükleme hatası
+                return redirect()->back()->withErrors(['image' => 'Dosya yükleme hatası']);
+            }
         }
 
-        $announcement = Announcement::findOrFail($id);
         $announcement->update($validatedData);
 
         // İsteğe bağlı olarak başarılı bir şekilde güncellendiğini belirten bir mesaj eklenebilir.
 
         return redirect()->route('announcements.index');
     }
+
 
     /**
      * Remove the specified resource from storage.

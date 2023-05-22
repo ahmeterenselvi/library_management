@@ -87,6 +87,11 @@
                 <input type="text" class="form-control" name="publisher" id="publisher" required>
             </div>
 
+            <div class="form-group">
+                <label for="image">Resim</label>
+                <input type="file" class="form-control-file" id="image" name="image" required>
+            </div>
+
             <button type="submit" class="btn btn-primary">Kaydet</button>
         </form>
 

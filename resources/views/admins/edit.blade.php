@@ -72,7 +72,7 @@
 <body>
 @section('content')
     <div class="container">
-        <form method="POST" action="{{ route('admins.update', $admin->id) }}">
+        <form method="POST" action="{{ route('admins.update', $admin->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 

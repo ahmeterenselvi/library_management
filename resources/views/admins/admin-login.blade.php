@@ -71,6 +71,5 @@
 <script src="{{ asset('/AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('/AdminLTE-master/dist/js/adminlte.min.js') }}"></script>
-@include('layouts.scripts')
 </body>
 </html>

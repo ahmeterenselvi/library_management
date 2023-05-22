@@ -2,7 +2,7 @@
 <html lang="tr">
 @include('layouts.head')
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
-<div class="wrapper">
+<div class="page-content">
 <!-- @include('layouts.preloader')-->
     <!-- Navbar -->
 @include('layouts.navbar')

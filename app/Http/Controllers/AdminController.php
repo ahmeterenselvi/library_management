@@ -120,6 +120,9 @@ class AdminController extends Controller
             return back()->withErrors(['email' => 'Invalid credentials']);
         }
 
+        session(['email' => $admin->email]);
+        session(['password' => $admin->password]);
+
         // Başarılı giriş işlemi
         // İşlemleri buraya ekleyebilirsiniz
 

@@ -33,10 +33,18 @@ class BookController extends Controller
             'title' => 'required',
             'author' => 'required',
             'page_count' => 'required|integer',
-            'publisher' => 'required'
+            'publisher' => 'required',
+            'image' => 'required'
         ]);
 
         $validatedData['available'] = true;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $validatedData['image'] = $imageName;
+        }
 
         $book = new Book($validatedData);
         $book->save();
@@ -51,7 +59,8 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+        return view('books.show', compact('book'));
     }
 
     /**
@@ -73,16 +82,41 @@ class BookController extends Controller
             'author' => 'required',
             'page_count' => 'required|integer',
             'publisher' => 'required',
-            'available' => 'required'
+            'available' => 'required',
+            'image' => 'required'
         ]);
 
         $book = Book::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+
+            if ($image->isValid()) {
+                // Eski resmi sil
+                if ($book->image) {
+                    $imagePath = public_path('images') . '/' . $book->image;
+                    if (file_exists($imagePath)) {
+                        unlink($imagePath);
+                    }
+                }
+
+                // Yeni resmi yükle
+                $imageName = time() . '.' . $image->extension();
+                $image->move(public_path('images'), $imageName);
+                $validatedData['image'] = $imageName;
+            } else {
+                // Yükleme hatası
+                return redirect()->back()->withErrors(['image' => 'Dosya yükleme hatası']);
+            }
+        }
+
         $book->update($validatedData);
 
         // İsteğe bağlı olarak başarılı bir şekilde güncellendiğini belirten bir mesaj eklenebilir.
 
         return redirect()->route('books.index');
     }
+
 
     /**
      * Remove the specified resource from storage.

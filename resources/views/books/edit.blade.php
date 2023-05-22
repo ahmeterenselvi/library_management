@@ -66,7 +66,7 @@
 @section('content')
     <div class="container">
 
-        <form method="POST" action="{{ route('books.update', $book->id) }}">
+        <form method="POST" action="{{ route('books.update', $book->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -90,6 +90,11 @@
                 <label for="publisher">Yayınevi:</label>
                 <input type="text" class="form-control" name="publisher" id="publisher" value="{{ $book->publisher }}"
                        required>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Resim</label>
+                <input type="file" class="form-control-file" id="image" name="image" required>
             </div>
 
             <div class="form-group">

@@ -6,6 +6,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\LibraryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ use App\Http\Controllers\MessageController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('/home');
 })->name('home');
 
 
@@ -32,6 +33,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/library', [LibraryController::class, 'index'])->name('library.index');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
@@ -74,7 +77,7 @@ Route::post('admin/login', [AdminController::class, 'login'])->name('admin.login
 
 // Student Login Routes
 Route::get('student/login', [StudentController::class,'showLoginForm'])->name('student.login');
-Route::post('student/login', [StudentController::class,'showLoginForm'])->name('student.login.submit');
+Route::post('student/login', [StudentController::class,'login'])->name('student.login.submit');
 
 // Student Registration Routes
 Route::get('student/register', [StudentController::class,'showRegistrationForm'])->name('student.register');
