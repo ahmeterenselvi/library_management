@@ -31,7 +31,9 @@ class MessageController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required',
-            'content' => 'required',
+            'message' => 'required',
+            'sender' => 'required',
+            'receiver' => 'required'
         ]);
 
         $message = new Message($validatedData);
@@ -63,20 +65,18 @@ class MessageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        $validatedData = $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-        ]);
-
         $message = Message::findOrFail($id);
-        $message->update($validatedData);
+        $message->update([
+            'read' => true
+        ]);
 
         // İsteğe bağlı olarak başarılı bir şekilde güncellendiğini belirten bir mesaj eklenebilir.
 
         return redirect()->route('messages.index');
     }
+
 
     /**
      * Remove the specified resource from storage.

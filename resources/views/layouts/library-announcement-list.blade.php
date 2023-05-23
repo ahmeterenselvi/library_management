@@ -1,5 +1,5 @@
-<div class="section px-2 px-lg-4 pt-5" id="announcement">
-    <div class="container">
+<div class="section px-2 px-lg-4 pt-5" id="announcements">
+    <div class="container-narrow">
         <div class="text-center mb-5">
             <h2 class="marker marker-center">Duyurular</h2>
         </div>
@@ -23,16 +23,17 @@
 </div>
 
 @push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.slick-slider').slick({
-                slidesToShow: 3, // Gösterilecek slayt sayısı
-                slidesToScroll: 1, // Kaydırma işlemi sırasında kaç slaytın geçileceği
-                autoplay: true, // Otomatik oynatma
-                autoplaySpeed: 3000, // Otomatik oynatma hızı (ms cinsinden)
-                dots: true, // Navigasyon noktalarını gösterme
-                arrows: true, // Ok işaretlerini gösterme
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                dots: true,
+                arrows: true,
                 responsive: [
                     {
                         breakpoint: 768,

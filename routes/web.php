@@ -35,6 +35,8 @@ Route::middleware([
 });
 
 Route::get('/library', [LibraryController::class, 'index'])->name('library.index');
+Route::post('/library', [LibraryController::class, 'store'])->name('library.store');
+Route::post('/library/{id}/edit', [LibraryController::class, 'borrow'])->name('library.borrow');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/create', [BookController::class, 'create'])->name('books.create');

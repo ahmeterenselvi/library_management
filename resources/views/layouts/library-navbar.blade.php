@@ -6,9 +6,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto me-2">
                     <li class="nav-item"><a class="nav-link" href="#about">Hakkımda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Kitaplar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Duyurular</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Mesajlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#books">Kitaplar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#announcements">Duyurular</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#message">Mesajlar</a></li>
                 </ul>
             </div>
         </div>

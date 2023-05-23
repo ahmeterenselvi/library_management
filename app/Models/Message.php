@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    protected $fillable = ['name', 'email', 'title','message', 'read', 'sent_at'];
+    protected $fillable = ['sender', 'receiver', 'title', 'message', 'read', 'sent_at'];
     use HasFactory;
 }
