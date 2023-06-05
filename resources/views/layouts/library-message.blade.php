@@ -1,3 +1,9 @@
+<style>
+    .message {
+        margin-top: 200px;
+        height: 400px
+    }
+</style>
 <div class="section px-3 px-lg-4 pt-5" id="message">
     <div class="container-narrow">
         <div class="row py-3">
@@ -18,11 +24,12 @@
                         <label for="message">İçerik:</label>
                         <input type="text" class="form-control" name="message" id="message" required>
                     </div>
-
+                    @if (session('student'))
                     <div class="form-group" style="visibility: hidden">
-                        <input type="text" class="form-control" name="sender" id="sender" value="{{session('email')}}"
+                        <input type="text" class="form-control" name="sender_student_id" id="sender_student_id" value="{{session('student')['id']}}"
                                required>
                     </div>
+                    @endif
 
                     <button type="submit" class="btn btn-primary">Gönder</button>
                 </form>

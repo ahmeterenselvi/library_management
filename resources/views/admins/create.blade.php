@@ -69,6 +69,11 @@
             @csrf
 
             <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" class="form-control" name="fullName" id="fullName" required>
+            </div>
+
+            <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" name="email" id="email" required>
             </div>

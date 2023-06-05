@@ -15,7 +15,7 @@
 
         @include('layouts.library-announcement-list')
 
-        <div class="section pt-4 px-3 px-lg-4" id="message">
+        <div class="section pt-12 px-12 px-lg-12" id="message">
             <div class="container-narrow">
                 <div class="text-center mb-5">
                     <h2 class="marker marker-center">Mesajlar</h2>

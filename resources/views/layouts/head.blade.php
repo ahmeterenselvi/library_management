@@ -13,4 +13,5 @@
     <link rel="stylesheet" href="/AdminLTE-master/docs/assets/css/highlighter.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/AdminLTE-master/dist/css/adminlte.min.css">
+
 </head>

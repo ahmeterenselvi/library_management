@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -128,12 +129,15 @@ class StudentController extends Controller
 
         // Başarılı giriş işlemi
         // Oturuma öğrenci bilgilerini ekleyin
-        session(['student_name' => $student->name]);
-        session(['student_number' => $student->student_number]);
-        session(['email' => $student->email]);
-        session(['phone' => $student->phone]);
-        session(['password' => $student->password]);
+        session(['student' => $student]);
+            
+        if (Auth::attempt(['email'=> $request->email, 'password'=> $request->password])) {
 
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('dashboard');
+        }
+ 
         return redirect()->route('library.index');
     }
 

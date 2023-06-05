@@ -20,6 +20,9 @@ use App\Http\Controllers\LibraryController;
 */
 
 Route::get('/', function () {
+    $adminsession = session('id');
+    if (!isset($adminsession))
+        return view('/admins/admin-login');
     return view('/home');
 })->name('home');
 
@@ -34,9 +37,13 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/library', [LibraryController::class, 'index'])->name('library.index');
+Route::get('/library', [LibraryController::class, 'index'])->name('library.index')->middleware('auth');
 Route::post('/library', [LibraryController::class, 'store'])->name('library.store');
 Route::post('/library/{id}/edit', [LibraryController::class, 'borrow'])->name('library.borrow');
+
+// PROFILE UPDATE STUFFS.
+Route::get('/library/profile-index', [LibraryController::class, 'profileIndex'])->name('profile.index');
+Route::post('/library/profile-update', [LibraryController::class, 'profileUpdate'])->name('profile.update');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/create', [BookController::class, 'create'])->name('books.create');

@@ -75,6 +75,8 @@ class AdminController extends Controller
             $validatedData['password'] = bcrypt($request->input('password'));
         }
 
+        $validatedData['fullName'] = $request->fullName;
+
         $admin = Admin::findOrFail($id);
         $admin->update($validatedData);
 
@@ -120,8 +122,12 @@ class AdminController extends Controller
             return back()->withErrors(['email' => 'Invalid credentials']);
         }
 
-        session(['email' => $admin->email]);
-        session(['password' => $admin->password]);
+        session([
+            'id' => $admin->id,
+            'email' => $admin->email,
+            'password' => $admin->password,
+            'fullName' => $admin->fullName
+            ]);
 
         // Başarılı giriş işlemi
         // İşlemleri buraya ekleyebilirsiniz

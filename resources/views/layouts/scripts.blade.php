@@ -28,3 +28,4 @@
 <script src="/AdminLTE-master/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/AdminLTE-master/dist/js/pages/dashboard.js"></script>
+

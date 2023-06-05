@@ -89,6 +89,7 @@
         <tbody>
         @foreach ($admins as $admin)
             <tr>
+                <td>{{ $admin->fullName }}</td>
                 <td>{{ $admin->email }}</td>
                 <td>{{ $admin->password }}</td>
                 <td>

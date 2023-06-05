@@ -14,6 +14,14 @@
     <link href="/Template/css/bootstrap.min.css" rel="stylesheet">
     <link href="/Template/css/aos.css" rel="stylesheet">
     <link href="/Template/css/main.css" rel="stylesheet">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="Template/slick/slick.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="Template/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="Template/slick/slick-theme.css"/>
+
     <noscript>
         <style type="text/css">
             [data-aos] {

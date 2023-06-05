@@ -77,6 +77,11 @@
             @method('PUT')
 
             <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" class="form-control" name="fullName" id="fullName" value="{{ $admin->fullName }}" required>
+            </div>
+
+            <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" name="email" id="email" value="{{ $admin->email }}" required>
             </div>
@@ -84,7 +89,7 @@
             <div class="form-group">
                 <label for="password">Şifre:</label>
                 <div class="input-group">
-                    <input type="password" class="form-control" name="password" id="password" value="{{ $admin->password }}" required>
+                    <input type="password" class="form-control" name="password" id="password" required>
                     <div class="input-group-append">
             <span class="input-group-text password-toggle" style="cursor: pointer;">
                 <i class="fas fa-eye"></i>

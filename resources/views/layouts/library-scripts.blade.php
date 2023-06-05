@@ -5,3 +5,4 @@
 <script src="Template/scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
 <script src="Template/scripts/aos.min.js?ver=1.2.0"></script>
 <script src="Template/scripts/main.js?ver=1.2.0"></script>
+@stack('scripts')
